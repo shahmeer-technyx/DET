@@ -4,6 +4,7 @@ import QuizForm from "@/components/QuizForm";
 import VideoPlayer from "@/components/VideoPlayer";
 import { COURSES } from "@/data";
 import { produce } from "immer";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 const Page = ({ params }) => {
@@ -127,20 +128,23 @@ const Page = ({ params }) => {
     <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem' }}>
       <aside>
         <div>
+          <Link href={'/'} style={{ color: '#009BD8' }}>{"< Back to All Courses"}</Link>
+        </div>
+        <div>
           <h1>Course: {course.title}</h1>
-          <h2>{course.subTitle}</h2>
+          <h4>{course.subTitle}</h4>
         </div>
         <div style={{ marginTop: '20px' }}>
-          <h3>Lesson {lesson.id}: {lesson.title}</h3>
+          {/* <h3>Lesson {lesson.id}: {lesson.title}</h3> */}
           <div>
-            <h2>{lesson.id}.{content.id}. {content.type} {displayVideo && !displayQuiz && `(${videoLang})`} {content.isFinished ? "✅" : ""}</h2>
+            {/* <h2>{lesson.id}.{content.id}. {content.type} {displayVideo && !displayQuiz && `(${videoLang})`} {content.isFinished ? "✅" : ""}</h2> */}
             <div>
               {displayVideo && (
                 <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} videoLang={videoLang} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} handleLangChange={handleLangChange} />
               )}
               {displayQuiz && (
                 // <h1>Quiz</h1>
-                <QuizForm quiz={content} playFrom={playFrom} handleNext={handleNext} handleQuizResize={handleQuizResize} />
+                <QuizForm quiz={content} lessonTitle={lesson.title} playFrom={playFrom} handleNext={handleNext} handleQuizResize={handleQuizResize} />
               )}
             </div>
           </div>
@@ -155,20 +159,21 @@ const Page = ({ params }) => {
               {lessons.map((lesson, i) => {
                 return (
                   <li key={lesson.id}>
-                    <h2>{lesson.id}. {lesson.title}</h2>
+                    <h2 style={{ backgroundColor: `${lesson.isFinished ? '#009BD8' : 'none'}` }}>{lesson.id}. {lesson.title}</h2>
                     <ul>
                       {lesson.contents.map((content, j) => {
                         return (
-                          <li key={content.id}>
-                            <a style={{ cursor: 'pointer' }} onClick={() => handleNavClick(i, j)}>
+                          <li key={content.id} style={{ color: `${(i === lessonIdx && j === contentIdx) ? '#009BD8' : 'unset'}` }}>
+                            <a onClick={() => handleNavClick(i, j)}>
                               <h3>
-                                {lesson.id}.{content.id}. {content.type} {content.isFinished ? `✅ ${content.type === 'quiz' ? (content.score + "/" + content.questions.length) : ""}` : ""}
+                                {content.type} {content.isFinished ? `✅ ${content.type === 'quiz' ? (content.score + "/" + content.questions.length) : ""}` : ""}
                               </h3>
                             </a>
                           </li>
                         )
                       })}
                     </ul>
+                    <button onClick={() => handleNavClick(i, lessons[i].contents.length - 1)}>{lessons[i].contents[lessons[i].contents.length - 1].isFinished ? 'Retake Quiz' : 'Take Quiz'}</button>
                   </li>
                 )
               })}

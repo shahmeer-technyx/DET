@@ -1,63 +1,110 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 
-const QuizForm = ({ quiz, playFrom, handleNext, handleQuizResize }) => {
-  console.log("QuizForm");
-  const [questionIdx, setQuestionIdx] = useState(0);
-  const [score, setScore] = useState(0);
-  const [showScore, setShowScore] = useState(false);
+const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize }) => {
+
+  const [state, setState] = useState({
+    questionIdx: 0,
+    score: 0,
+    revealAnswer: false,
+    selectedOptionIds: [],
+  })
+
+  const { questionIdx, score, revealAnswer, selectedOptionIds } = state;
 
   const { questions } = quiz;
   const question = questions[questionIdx];
 
-  const handleAnswerOptionClick = (isCorrect) => {
-    if (isCorrect) {
-      setScore(score + 1);
-    }
-
+  const handleNextQuestionClick = () => {
     const nextQuestionIdx = questionIdx + 1;
     if (nextQuestionIdx < questions.length) {
-      setQuestionIdx(nextQuestionIdx);
-    } else {
-      setShowScore(true);
+      setState(prevState => ({
+        ...prevState,
+        questionIdx: nextQuestionIdx,
+        revealAnswer: false,
+        selectedOptionIds: [],
+      }));
     }
   };
 
+  const correctOptionIds = useMemo(() => {
+    return question.answerOptions
+      .filter((answerOption) => answerOption.isCorrect)
+      .map((answerOption) => answerOption.id);
+  }, [questionIdx]);
+
+  const handleAnswerClick = (optionId) => {
+    if (state.revealAnswer) return;
+    if (selectedOptionIds.includes(optionId)) {
+      setState(prevState => ({
+        ...prevState,
+        selectedOptionIds: prevState.selectedOptionIds.filter(id => id !== optionId)
+      }))
+    } else if (correctOptionIds.length === selectedOptionIds.length + 1) {
+      let score = 0;
+      let division = 1 / correctOptionIds.length;
+      selectedOptionIds.forEach((selectedOptionId) => {
+        if (correctOptionIds.includes(selectedOptionId)) {
+          score += division;
+        }
+      });
+      setState(prevState => ({
+        ...prevState,
+        revealAnswer: true,
+        score: score,
+        selectedOptionIds: [...state.selectedOptionIds, optionId]
+      }));
+    } else {
+      setState(prevState => ({
+        ...prevState,
+        selectedOptionIds: [...state.selectedOptionIds, optionId]
+      }));
+    }
+  }
+
+  console.log(state, correctOptionIds);
+
   return (
-    <div className="quiz-container" style={{fontSize: "1.5rem"}}>
-      {showScore ? (
+    <div >
+      <>
         <div>
-          <div className="score-section">
-            You scored {score} out of {questions.length}
-          </div>
-          <div >
-            <button onClick={() => handleNext(playFrom, score)}>Next</button>
-          </div>
+          <button onClick={() => handleQuizResize(playFrom)}>{"><"}</button>
         </div>
-      ) : (
-        <>
-          <div className='resize-quiz'>
-            <button onClick={() => handleQuizResize(playFrom)}>{"-><-"}</button>
+        <div style={{ fontSize: "1.5rem" }}>
+          <div>
+            <p>Quiz <span>(Questions {questionIdx + 1}/{questions.length})</span></p>
+            <h3>{lessonTitle}</h3>
           </div>
-          <div className="question-section">
-            <div className="question-count">
-              <span>Question {questionIdx + 1}</span>/{questions.length}
-            </div>
-            <div className="question-text">{question.questionText}</div>
-          </div>
-          <div className="answer-section">
-            {question.answerOptions.map(answerOption => (
-              <button key={answerOption.id} onClick={() => handleAnswerOptionClick(answerOption.isCorrect)}>
-                {answerOption.text}
-              </button>
-            ))}
-          </div>
-          <div >
-            <button onClick={() => {handleNext(playFrom, score)}}>Skip</button>
-          </div>
-        </>
-      )}
+          <div className="question-text">{question.questionText}</div>
+        </div>
+        <div>
+          {question.answerOptions.map((answerOption, i) => (
+            <button
+              style={{
+                backgroundColor: `${revealAnswer
+                  ? (
+                    selectedOptionIds.includes(answerOption.id)
+                      ? (correctOptionIds.includes(answerOption.id) ? "green" : "red")
+                      : "none") : "none"}`,
+                border: `${revealAnswer
+                  ? (
+                    !selectedOptionIds.includes(answerOption.id)
+                      ? (correctOptionIds.includes(answerOption.id) ? "5px solid green" : "2px solid grey")
+                      : "2px solid grey") : selectedOptionIds.includes(answerOption.id) ? "5px solid blue" : "2px solid grey"}`,
+              }}
+              key={answerOption.id}
+              onClick={() => handleAnswerClick(answerOption.id)}
+            >
+              {i + 1}. {answerOption.text}
+            </button>
+          ))}
+        </div>
+        <div style={{ marginTop: "1rem" }}>
+          {questionIdx + 1 < quiz.questions.length && <button onClick={() => handleNextQuestionClick()}>Next question</button>}
+          <a onClick={() => { handleNext(playFrom, score) }}>Skip to next lesson</a>
+        </div>
+      </>
     </div>
   );
 };

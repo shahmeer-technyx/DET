@@ -3,7 +3,9 @@ export const COURSES = [
     id: 1,
     slug: 'intro-to-entrepreneurship',
     title: 'Introduction to Entrepreneurship',
-    subTitle: 'Learn the basics of entrepreneur',
+    subTitle: 'Start your entrepreneurial journey with our beginner-friendly course, covering essential skills and insights for success. ',
+    type: "Online",
+    isAi: true,
     isFinished: false,
     lessons: [
       {
@@ -14,7 +16,7 @@ export const COURSES = [
           {
             id: 1,
             type: 'video',
-            isFinished: false,
+            isFinished: true,
             languages: ['en', 'ar'],
             srcList: {
               "en": 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
@@ -24,7 +26,7 @@ export const COURSES = [
           {
             id: 2,
             type: 'quiz',
-            isFinished: false,
+            isFinished: true,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
@@ -33,9 +35,9 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of Canada?',
                 answerOptions: [
-                  { id: 1, text: 'Ottawa', isCorrect: true },
+                  { id: 1, text: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Toronto', isCorrect: false },
-                  { id: 3, text: 'Calgary', isCorrect: false },
+                  { id: 3, text: 'Calgary', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 4, text: 'Vancouver', isCorrect: false },
                 ]
               },
@@ -44,7 +46,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you working?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -79,7 +81,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of Germany?',
                 answerOptions: [
-                  { id: 1, text: 'Berlin', isCorrect: true },
+                  { id: 1, text: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Hamburg', isCorrect: false },
                   { id: 3, text: 'Cologne', isCorrect: false },
                   { id: 4, text: 'Frankfurt', isCorrect: false },
@@ -90,7 +92,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you excited?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -126,7 +128,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of France?',
                 answerOptions: [
-                  { id: 1, text: 'Paris', isCorrect: true },
+                  { id: 1, text: 'Paris', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Lyon', isCorrect: false },
                   { id: 3, text: 'Marseille', isCorrect: false },
                   { id: 4, text: 'Nantes', isCorrect: false },
@@ -137,7 +139,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you running?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -155,7 +157,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of France?',
           answerOptions: [
-            { id: 1, text: 'Paris', isCorrect: true },
+            { id: 1, text: 'Paris', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Lyon', isCorrect: false },
             { id: 3, text: 'Marseille', isCorrect: false },
             { id: 4, text: 'Nantes', isCorrect: false },
@@ -166,7 +168,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you running?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -175,7 +177,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of Germany?',
           answerOptions: [
-            { id: 1, text: 'Berlin', isCorrect: true },
+            { id: 1, text: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Hamburg', isCorrect: false },
             { id: 3, text: 'Cologne', isCorrect: false },
             { id: 4, text: 'Frankfurt', isCorrect: false },
@@ -186,7 +188,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you excited?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -195,7 +197,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of Canada?',
           answerOptions: [
-            { id: 1, text: 'Ottawa', isCorrect: true },
+            { id: 1, text: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Toronto', isCorrect: false },
             { id: 3, text: 'Calgary', isCorrect: false },
             { id: 4, text: 'Vancouver', isCorrect: false },
@@ -206,7 +208,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you working?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -247,7 +249,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of Canada?',
                 answerOptions: [
-                  { id: 1, text: 'Ottawa', isCorrect: true },
+                  { id: 1, text: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Toronto', isCorrect: false },
                   { id: 3, text: 'Calgary', isCorrect: false },
                   { id: 4, text: 'Vancouver', isCorrect: false },
@@ -258,7 +260,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you working?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -293,7 +295,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of Germany?',
                 answerOptions: [
-                  { id: 1, text: 'Berlin', isCorrect: true },
+                  { id: 1, text: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Hamburg', isCorrect: false },
                   { id: 3, text: 'Cologne', isCorrect: false },
                   { id: 4, text: 'Frankfurt', isCorrect: false },
@@ -304,7 +306,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you excited?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -340,7 +342,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of France?',
                 answerOptions: [
-                  { id: 1, text: 'Paris', isCorrect: true },
+                  { id: 1, text: 'Paris', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Lyon', isCorrect: false },
                   { id: 3, text: 'Marseille', isCorrect: false },
                   { id: 4, text: 'Nantes', isCorrect: false },
@@ -351,7 +353,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you running?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -369,7 +371,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of France?',
           answerOptions: [
-            { id: 1, text: 'Paris', isCorrect: true },
+            { id: 1, text: 'Paris', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Lyon', isCorrect: false },
             { id: 3, text: 'Marseille', isCorrect: false },
             { id: 4, text: 'Nantes', isCorrect: false },
@@ -380,7 +382,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you running?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -389,7 +391,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of Germany?',
           answerOptions: [
-            { id: 1, text: 'Berlin', isCorrect: true },
+            { id: 1, text: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Hamburg', isCorrect: false },
             { id: 3, text: 'Cologne', isCorrect: false },
             { id: 4, text: 'Frankfurt', isCorrect: false },
@@ -400,7 +402,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you excited?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -409,7 +411,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of Canada?',
           answerOptions: [
-            { id: 1, text: 'Ottawa', isCorrect: true },
+            { id: 1, text: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Toronto', isCorrect: false },
             { id: 3, text: 'Calgary', isCorrect: false },
             { id: 4, text: 'Vancouver', isCorrect: false },
@@ -420,7 +422,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you working?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -461,7 +463,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of Canada?',
                 answerOptions: [
-                  { id: 1, text: 'Ottawa', isCorrect: true },
+                  { id: 1, text: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Toronto', isCorrect: false },
                   { id: 3, text: 'Calgary', isCorrect: false },
                   { id: 4, text: 'Vancouver', isCorrect: false },
@@ -472,7 +474,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you working?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -507,7 +509,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of Germany?',
                 answerOptions: [
-                  { id: 1, text: 'Berlin', isCorrect: true },
+                  { id: 1, text: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Hamburg', isCorrect: false },
                   { id: 3, text: 'Cologne', isCorrect: false },
                   { id: 4, text: 'Frankfurt', isCorrect: false },
@@ -518,7 +520,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you excited?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -554,7 +556,7 @@ export const COURSES = [
                 questionType: 'mcq',
                 questionText: 'What is the capital of France?',
                 answerOptions: [
-                  { id: 1, text: 'Paris', isCorrect: true },
+                  { id: 1, text: 'Paris', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'Lyon', isCorrect: false },
                   { id: 3, text: 'Marseille', isCorrect: false },
                   { id: 4, text: 'Nantes', isCorrect: false },
@@ -565,7 +567,7 @@ export const COURSES = [
                 questionType: 'bcq',
                 questionText: 'Are you running?',
                 answerOptions: [
-                  { id: 1, text: 'True', isCorrect: true },
+                  { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
                   { id: 2, text: 'False', isCorrect: false },
                 ]
               },
@@ -583,7 +585,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of France?',
           answerOptions: [
-            { id: 1, text: 'Paris', isCorrect: true },
+            { id: 1, text: 'Paris', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Lyon', isCorrect: false },
             { id: 3, text: 'Marseille', isCorrect: false },
             { id: 4, text: 'Nantes', isCorrect: false },
@@ -594,7 +596,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you running?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -603,7 +605,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of Germany?',
           answerOptions: [
-            { id: 1, text: 'Berlin', isCorrect: true },
+            { id: 1, text: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Hamburg', isCorrect: false },
             { id: 3, text: 'Cologne', isCorrect: false },
             { id: 4, text: 'Frankfurt', isCorrect: false },
@@ -614,7 +616,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you excited?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -623,7 +625,7 @@ export const COURSES = [
           questionType: 'mcq',
           questionText: 'What is the capital of Canada?',
           answerOptions: [
-            { id: 1, text: 'Ottawa', isCorrect: true },
+            { id: 1, text: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'Toronto', isCorrect: false },
             { id: 3, text: 'Calgary', isCorrect: false },
             { id: 4, text: 'Vancouver', isCorrect: false },
@@ -634,7 +636,7 @@ export const COURSES = [
           questionType: 'bcq',
           questionText: 'Are you working?',
           answerOptions: [
-            { id: 1, text: 'True', isCorrect: true },
+            { id: 1, text: 'True', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
             { id: 2, text: 'False', isCorrect: false },
           ]
         },
@@ -654,7 +656,7 @@ export const VIDEO_QUIZ = [
       {
         questionText: 'What is the capital of Canada?',
         answerOptions: [
-          { answerText: 'Ottawa', isCorrect: true },
+          { answerText: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
           { answerText: 'Toronto', isCorrect: false },
           { answerText: 'Calgary', isCorrect: false },
           { answerText: 'Vancouver', isCorrect: false },
@@ -663,7 +665,7 @@ export const VIDEO_QUIZ = [
       {
         questionText: 'What is the capital of Germany?',
         answerOptions: [
-          { answerText: 'Berlin', isCorrect: true },
+          { answerText: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
           { answerText: 'Hamburg', isCorrect: false },
           { answerText: 'Cologne', isCorrect: false },
           { answerText: 'Frankfurt', isCorrect: false },
@@ -682,7 +684,7 @@ export const VIDEO_QUIZ = [
       {
         questionText: 'What is the capital of Canada?',
         answerOptions: [
-          { answerText: 'Ottawa', isCorrect: true },
+          { answerText: 'Ottawa', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
           { answerText: 'Toronto', isCorrect: false },
           { answerText: 'Calgary', isCorrect: false },
           { answerText: 'Vancouver', isCorrect: false },
@@ -691,7 +693,7 @@ export const VIDEO_QUIZ = [
       {
         questionText: 'What is the capital of Germany?',
         answerOptions: [
-          { answerText: 'Berlin', isCorrect: true },
+          { answerText: 'Berlin', isCorrect: true, desc: 'Lorem ipsum something but nothing which means the answer is this.' },
           { answerText: 'Hamburg', isCorrect: false },
           { answerText: 'Cologne', isCorrect: false },
           { answerText: 'Frankfurt', isCorrect: false },
