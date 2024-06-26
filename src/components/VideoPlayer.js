@@ -51,6 +51,14 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, videoLang = 'en', srcL
     }
   };
 
+  const handleNextOnClick = (currentTime) => {
+    videoRef.current.pause();
+    // setTimeout(() => {
+    //   handleNext(currentTime);
+    // }, 1000);
+    handleNext(currentTime);
+  };
+
   return (
     <div className={videoStyles["video-container"]}>
       <h2>{title}</h2>
@@ -84,7 +92,7 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, videoLang = 'en', srcL
       )}
       {!displayQuiz && progress > 89 && (
         <div className={videoStyles['btn-container']}>
-          <button onClick={() => handleNext(currentTime)}>Next</button>
+          <button onClick={() => { handleNextOnClick(currentTime) }}>Next</button>
         </div>
       )}
     </div>

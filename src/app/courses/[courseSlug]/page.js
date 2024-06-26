@@ -122,6 +122,10 @@ const Page = ({ params }) => {
     }))
   }
 
+  let videoPlayer = useMemo(() => {
+    return <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} videoLang={videoLang} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} handleLangChange={handleLangChange} />
+  }, [videoLang, state.lastSrcList]);
+
   // console.log(course);
 
   return (
@@ -139,9 +143,10 @@ const Page = ({ params }) => {
           <div>
             {/* <h2>{lesson.id}.{content.id}. {content.type} {displayVideo && !displayQuiz && `(${videoLang})`} {content.isFinished ? "✅" : ""}</h2> */}
             <div>
-              {displayVideo && (
-                <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} videoLang={videoLang} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} handleLangChange={handleLangChange} />
-              )}
+              <div style={{ display: displayVideo ? 'block' : 'none' }}>
+                {/* <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} videoLang={videoLang} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} handleLangChange={handleLangChange} /> */}
+                {videoPlayer}
+              </div>
               {displayQuiz && (
                 // <h1>Quiz</h1>
                 <QuizForm quiz={content} lessonTitle={lesson.title} playFrom={playFrom} handleNext={handleNext} handleQuizResize={handleQuizResize} />

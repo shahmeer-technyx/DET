@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize }) => {
 
@@ -11,14 +11,27 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
     selectedOptionIds: [],
   })
 
+  useEffect(() => {
+    setState({
+      questionIdx: 0,
+      score: 0,
+      revealAnswer: false,
+      selectedOptionIds: [],
+    })
+  }, [quiz])
+
   const { questionIdx, score, revealAnswer, selectedOptionIds } = state;
 
   const { questions } = quiz;
   const question = questions[questionIdx];
 
+  let numOfQuestions = useMemo(() => {
+    return questions.length;
+  }, [questionIdx]);
+
   const handleNextQuestionClick = () => {
     const nextQuestionIdx = questionIdx + 1;
-    if (nextQuestionIdx < questions.length) {
+    if (nextQuestionIdx < numOfQuestions) {
       setState(prevState => ({
         ...prevState,
         questionIdx: nextQuestionIdx,
@@ -42,17 +55,18 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
         selectedOptionIds: prevState.selectedOptionIds.filter(id => id !== optionId)
       }))
     } else if (correctOptionIds.length === selectedOptionIds.length + 1) {
-      let score = 0;
+      let accumulatedScore = 0;
+      let tempSelectedOptionIds = [...state.selectedOptionIds, optionId];
       let division = 1 / correctOptionIds.length;
-      selectedOptionIds.forEach((selectedOptionId) => {
+      tempSelectedOptionIds.forEach((selectedOptionId) => {
         if (correctOptionIds.includes(selectedOptionId)) {
-          score += division;
+          accumulatedScore += division;
         }
       });
       setState(prevState => ({
         ...prevState,
         revealAnswer: true,
-        score: score,
+        score: prevState.score + accumulatedScore,
         selectedOptionIds: [...state.selectedOptionIds, optionId]
       }));
     } else {
@@ -63,8 +77,6 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
     }
   }
 
-  console.log(state, correctOptionIds);
-
   return (
     <div >
       <>
@@ -73,36 +85,45 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
         </div>
         <div style={{ fontSize: "1.5rem" }}>
           <div>
-            <p>Quiz <span>(Questions {questionIdx + 1}/{questions.length})</span></p>
+            <p>Quiz <span>(Questions {questionIdx + 1}/{numOfQuestions})</span></p>
             <h3>{lessonTitle}</h3>
           </div>
           <div className="question-text">{question.questionText}</div>
         </div>
         <div>
-          {question.answerOptions.map((answerOption, i) => (
-            <button
-              style={{
-                backgroundColor: `${revealAnswer
-                  ? (
-                    selectedOptionIds.includes(answerOption.id)
-                      ? (correctOptionIds.includes(answerOption.id) ? "green" : "red")
-                      : "none") : "none"}`,
-                border: `${revealAnswer
-                  ? (
-                    !selectedOptionIds.includes(answerOption.id)
-                      ? (correctOptionIds.includes(answerOption.id) ? "5px solid green" : "2px solid grey")
-                      : "2px solid grey") : selectedOptionIds.includes(answerOption.id) ? "5px solid blue" : "2px solid grey"}`,
-              }}
-              key={answerOption.id}
-              onClick={() => handleAnswerClick(answerOption.id)}
-            >
-              {i + 1}. {answerOption.text}
-            </button>
-          ))}
+          {question.answerOptions.map((answerOption, i) => {
+            let key = quiz.id.toString() + questionIdx.toString() + answerOption.id.toString();
+            console.log(key);
+            let bgColor = revealAnswer
+              ? (
+                selectedOptionIds.includes(answerOption.id)
+                  ? (correctOptionIds.includes(answerOption.id) ? "green" : "red")
+                  : "none") : "none";
+            let borderColor = revealAnswer
+              ? (
+                !selectedOptionIds.includes(answerOption.id)
+                  ? (correctOptionIds.includes(answerOption.id) ? "5px solid green" : "2px solid grey")
+                  : "2px solid grey") : selectedOptionIds.includes(answerOption.id) ? "5px solid blue" : "2px solid grey";
+            return (
+              <>
+                <button
+                  style={{ backgroundColor: bgColor, border: borderColor }}
+                  key={key}
+                  onClick={() => handleAnswerClick(answerOption.id)}
+                >
+                  {i + 1}. {answerOption.text}
+                </button>
+                {revealAnswer && answerOption.isCorrect && <p>{answerOption.desc}</p>}
+              </>
+            )
+          })}
         </div>
         <div style={{ marginTop: "1rem" }}>
-          {questionIdx + 1 < quiz.questions.length && <button onClick={() => handleNextQuestionClick()}>Next question</button>}
-          <a onClick={() => { handleNext(playFrom, score) }}>Skip to next lesson</a>
+          {questionIdx < numOfQuestions - 1 && <button onClick={() => handleNextQuestionClick()}>Next question</button>}
+          {(questionIdx >= numOfQuestions - 1 && revealAnswer)
+            ? <button onClick={() => { handleNext(playFrom, score) }}>Go to next lesson</button>
+            : <a onClick={() => { handleNext(playFrom, score) }}>Skip to next lesson</a>
+          }
         </div>
       </>
     </div>

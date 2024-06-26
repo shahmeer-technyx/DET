@@ -24,9 +24,9 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 1,
             type: 'quiz',
-            isFinished: true,
+            isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
@@ -117,7 +117,7 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 3,
             type: 'quiz',
             isFinished: false,
             score: 0,
@@ -238,7 +238,7 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 4,
             type: 'quiz',
             isFinished: false,
             score: 0,
@@ -284,7 +284,7 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 5,
             type: 'quiz',
             isFinished: false,
             score: 0,
@@ -331,7 +331,7 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 6,
             type: 'quiz',
             isFinished: false,
             score: 0,
@@ -452,7 +452,7 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 7,
             type: 'quiz',
             isFinished: false,
             score: 0,
@@ -498,7 +498,7 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 8,
             type: 'quiz',
             isFinished: false,
             score: 0,
@@ -545,7 +545,7 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 9,
             type: 'quiz',
             isFinished: false,
             score: 0,
