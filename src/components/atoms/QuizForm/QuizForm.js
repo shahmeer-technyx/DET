@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useState } from 'react';
+import useStyles from './style';
 
 const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize }) => {
 
@@ -24,6 +25,8 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
 
   const { questions } = quiz;
   const question = questions[questionIdx];
+
+  const classes = useStyles();
 
   let numOfQuestions = useMemo(() => {
     return questions.length;
@@ -78,7 +81,7 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
   }
 
   return (
-    <div >
+    <div className={classes.QuizForm}>
       <>
         <div>
           <button onClick={() => handleQuizResize(playFrom)}>{"><"}</button>
@@ -93,7 +96,6 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
         <div>
           {question.answerOptions.map((answerOption, i) => {
             let key = quiz.id.toString() + questionIdx.toString() + answerOption.id.toString();
-            console.log(key);
             let bgColor = revealAnswer
               ? (
                 selectedOptionIds.includes(answerOption.id)

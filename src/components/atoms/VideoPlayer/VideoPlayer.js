@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
-import videoStyles from '../styles/VideoPlayer.module.css';
+import useStyles from './style';
 
 const VideoPlayer = ({ displayQuiz = false, playFrom = 0, videoLang = 'en', srcList = {}, title = "", handleNext, handleLangChange }) => {
   const videoRef = useRef(null);
   const [duration, setDuration] = useState(null);
   const [currentTime, setCurrentTime] = useState(playFrom);
+
+  const classes = useStyles();
 
   const progress = (Number(currentTime?.toFixed(2)) / Number(duration?.toFixed(2)) * 100).toFixed();
 
@@ -60,12 +62,12 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, videoLang = 'en', srcL
   };
 
   return (
-    <div className={videoStyles["video-container"]}>
+    <div className={classes.VideoPlayer}>
       <h2>{title}</h2>
       <video
         ref={videoRef}
-        className={videoStyles['video']}
         controls
+        className='video'
       // onTimeUpdate={() => setCurrentTime(videoRef.current.currentTime)}
       >
         <source src={srcList[videoLang]} type="video/mp4" />
@@ -91,7 +93,7 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, videoLang = 'en', srcL
         </div>
       )}
       {!displayQuiz && progress > 89 && (
-        <div className={videoStyles['btn-container']}>
+        <div className='btn-container'>
           <button onClick={() => { handleNextOnClick(currentTime) }}>Next</button>
         </div>
       )}
