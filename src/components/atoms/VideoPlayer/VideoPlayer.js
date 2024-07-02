@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect, useCallback } from 'react';
 import useStyles from './style';
 import VideoLangBtn from '../VideoLangBtn/VideoLangBtn';
+import VideoVolumeBtn from '../VideoVolumeBtn/VideoVolumeBtn';
 
 const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNext }) => {
   const videoRef = useRef(null);
@@ -26,7 +27,8 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
 
       video.addEventListener('loadedmetadata', handleLoadedMetadata);
       video.load();
-      video.currentTime = playFrom;
+      console.log('playFrom', currentTime);
+      video.currentTime = currentTime;
 
       return () => {
         video?.removeEventListener('loadedmetadata', handleLoadedMetadata);
@@ -35,7 +37,7 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
   }, [videoLang, srcList, displayQuiz]);
 
   const handleSeek = (e) => {
-     let video = videoRef.current;
+    let video = videoRef.current;
     let outerBar = document.querySelector(".progress-outer-js");
     if (e.type === 'mousemove') {
       if (e.buttons > 0) {
@@ -113,6 +115,8 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
   const handleLangChange = useCallback((lang) => {
     setVideoLang(lang)
   }, []);
+
+  // console.log('videoRef.current', videoRef.current.volume);
 
   return (
     <div className={classes.VideoPlayer}>
@@ -201,8 +205,9 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
             <div className="video-duration video-duration-js">{formatTime(duration)}</div>
           </div>
           <div className="control-set set-2">
-            <VideoLangBtn lang={videoLang} srcList={srcList} handleLangChange={handleLangChange} />
-            <button>
+            <VideoLangBtn videoLang={videoLang} srcList={srcList} handleLangChange={handleLangChange} />
+            <VideoVolumeBtn videoRef={videoRef} />
+            {/* <button className='volume-btn'>
               <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M5.9585 2.70834L3.25016 4.87501H1.0835V8.12501H3.25016L5.9585 10.2917V2.70834Z" stroke="white"
                   strokeLinecap="round" strokeLinejoin="round" />
@@ -210,7 +215,10 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
                   d="M10.3296 2.67041C11.345 3.68619 11.9155 5.06369 11.9155 6.49999C11.9155 7.9363 11.345 9.3138 10.3296 10.3296M8.41748 4.58249C8.92521 5.09038 9.21044 5.77913 9.21044 6.49729C9.21044 7.21544 8.92521 7.90419 8.41748 8.41208"
                   stroke="white" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
-            </button>
+              <div className='volume-bar-wrapper'>
+                <input type="range" min="0" max="1" step="0.01" value={videoRef.current?.volume} onChange={(e) => { videoRef.current.volume = e.target.value; }} />
+              </div>
+            </button> */}
             <button className="enlarge-btn-js" onClick={handleEnlarge}>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path

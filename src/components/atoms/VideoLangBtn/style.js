@@ -4,6 +4,10 @@ const useStyles = makeStyles((theme) => ({
   VideoLangBtn: {
     position: 'relative',
 
+    '& .lang-name': {
+      color: '#fff',
+    },
+
     '& .popup': {
       position: 'absolute',
       bottom: '200%',
@@ -19,6 +23,10 @@ const useStyles = makeStyles((theme) => ({
       '& .lang-option': {
         display: 'block',
         padding: '0.5rem 1.5rem',
+
+        '&.active': {
+          backgroundColor: 'rgba(0,100,0,0.5)',
+        },
 
         '&:hover': {
           backgroundColor: 'rgba(255,255,255,1)',

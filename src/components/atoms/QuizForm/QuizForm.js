@@ -96,6 +96,7 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
         <div>
           {question.answerOptions.map((answerOption, i) => {
             let key = quiz.id.toString() + questionIdx.toString() + answerOption.id.toString();
+            console.log('key',key);
             let bgColor = revealAnswer
               ? (
                 selectedOptionIds.includes(answerOption.id)
@@ -107,16 +108,16 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
                   ? (correctOptionIds.includes(answerOption.id) ? "5px solid green" : "2px solid grey")
                   : "2px solid grey") : selectedOptionIds.includes(answerOption.id) ? "5px solid blue" : "2px solid grey";
             return (
-              <>
+              <div key={key}>
                 <button
                   style={{ backgroundColor: bgColor, border: borderColor }}
-                  key={key}
+                  // key={key}
                   onClick={() => handleAnswerClick(answerOption.id)}
                 >
                   {i + 1}. {answerOption.text}
                 </button>
                 {revealAnswer && answerOption.isCorrect && <p>{answerOption.desc}</p>}
-              </>
+              </div>
             )
           })}
         </div>

@@ -107,7 +107,7 @@ const Course = (props) => {
 
   let videoPlayer = useMemo(() => {
     return <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} />
-  }, [state.lastSrcList]);
+  }, [state.lastSrcList, lessonIdx]);
 
   // console.log(course);
 

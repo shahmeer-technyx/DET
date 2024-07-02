@@ -55,7 +55,37 @@ const useStyles = makeStyles((theme) => ({
             '& .pause-svg': {
               display: 'none',
             }
-          }
+          },
+
+          '&.set-2': {
+            '& .volume-btn': {
+              position: 'relative',
+              margin: '0 10px',
+
+              '& .volume-bar-wrapper': {
+                display: 'none',
+                position: 'absolute',
+                bottom: '300%',
+                left: '60%',
+                transform: 'translateX(-50%) rotate(-90deg)',
+                // width: 'fit-content',
+                // height: 'fit-content',
+                // border: '1px solid #000',
+                // borderRadius: '8px',
+                // backgroundColor: 'rgba(255,255,255,0.9)',
+                padding: '0.75rem 1rem',
+                // overflow: 'hidden',
+
+                '&:hover': {
+                  display: 'block',
+                }
+              },
+
+              '&:hover .volume-bar-wrapper': {
+                display: 'block',
+              },
+            }
+          },
         },
 
         '& .progress-wrapper': {

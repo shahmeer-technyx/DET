@@ -2,8 +2,8 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   QuizForm: {
-    backgroundColor: 'red',
-    color: 'blue',
+    // backgroundColor: 'red',
+    // color: 'blue',
   },
 }));
 
