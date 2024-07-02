@@ -6,7 +6,7 @@ import { produce } from "immer";
 import Link from "next/link";
 import { useCallback, useMemo, useState } from "react";
 
-const Course = ( props) => {
+const Course = (props) => {
 
   const [course, setCourse] = useState(props.course);
 
@@ -14,13 +14,12 @@ const Course = ( props) => {
     displayVideo: true,
     displayQuiz: false,
     lastSrcList: course.lessons[0].contents[0].srcList,
-    videoLang: 'en',
     playFrom: 0,
     lessonIdx: 0,
     contentIdx: 0
   });
 
-  const { displayVideo, displayQuiz, videoLang, playFrom, lessonIdx, contentIdx } = state;
+  const { displayVideo, displayQuiz, playFrom, lessonIdx, contentIdx } = state;
   const { lessons } = course;
   const { contents } = lessons[lessonIdx];
   const lesson = lessons[lessonIdx];
@@ -29,23 +28,18 @@ const Course = ( props) => {
   let courseCompletion = useMemo(() => {
     let totalContent = 0;
     let completedContent = 0;
-    course.lessons.forEach(lesson => lesson.contents.forEach(content => {
+    lessons.forEach(lesson => lesson.contents.forEach(content => {
       totalContent++;
       if (content.isFinished) completedContent++;
     }));
     return (completedContent / totalContent * 100).toFixed(1);
   }, [course])
 
-  // console.log(playFrom, videoLang);
-  // console.log('contentIdx, lessonIdx', contentIdx, lessonIdx);
-  // console.log('state.contentIdx, state.lessonIdx', state.contentIdx, state.lessonIdx);
-
-  const handleNext = (playFrom, score) => {
+  const handleNext = (playFrom = 0, score = 0) => {
     // Note: Using immer
     setCourse(produce(prevState => {
       prevState.lessons[lessonIdx].contents[contentIdx].isFinished = true;
       if (contents[contentIdx].type === 'quiz') {
-        console.log('score', score);
         prevState.lessons[lessonIdx].contents[contentIdx].score = score;
       }
     }))
@@ -90,15 +84,7 @@ const Course = ( props) => {
     }
   }
 
-  const handleLangChange = useCallback((lang, playFrom) => {
-    setState(prevState => ({
-      ...prevState,
-      videoLang: lang,
-      playFrom: playFrom
-    }))
-  }, []);
-
-  const handleQuizResize = useCallback((playFrom) => {
+  const handleQuizResize = useCallback(() => {
     setState(prevState => ({
       ...prevState,
       displayVideo: !prevState.displayVideo,
@@ -110,9 +96,9 @@ const Course = ( props) => {
     console.log('handleNavClick', lessonIdx, contentIdx);
     setState(prevState => ({
       ...prevState,
-      displayVideo: course.lessons[lessonIdx].contents[contentIdx].type === 'video',
-      displayQuiz: course.lessons[lessonIdx].contents[contentIdx].type === 'quiz',
-      lastSrcList: course.lessons[lessonIdx].contents[0].srcList,
+      displayVideo: lessons[lessonIdx].contents[contentIdx].type === 'video',
+      displayQuiz: lessons[lessonIdx].contents[contentIdx].type === 'quiz',
+      lastSrcList: lessons[lessonIdx].contents[0].srcList,
       playFrom: 0,
       lessonIdx: lessonIdx,
       contentIdx: contentIdx,
@@ -120,8 +106,8 @@ const Course = ( props) => {
   }
 
   let videoPlayer = useMemo(() => {
-    return <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} videoLang={videoLang} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} handleLangChange={handleLangChange} />
-  }, [videoLang, state.lastSrcList]);
+    return <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} />
+  }, [state.lastSrcList]);
 
   // console.log(course);
 
@@ -136,12 +122,9 @@ const Course = ( props) => {
           <h4>{course.subTitle}</h4>
         </div>
         <div style={{ marginTop: '20px' }}>
-          {/* <h3>Lesson {lesson.id}: {lesson.title}</h3> */}
           <div>
-            {/* <h2>{lesson.id}.{content.id}. {content.type} {displayVideo && !displayQuiz && `(${videoLang})`} {content.isFinished ? "✅" : ""}</h2> */}
             <div>
               <div style={{ display: displayVideo ? 'block' : 'none' }}>
-                {/* <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} videoLang={videoLang} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} handleLangChange={handleLangChange} /> */}
                 {videoPlayer}
               </div>
               {displayQuiz && (
@@ -156,16 +139,16 @@ const Course = ( props) => {
         {
           <>
             <h2 style={{ display: 'inline-block' }}>Completion: {courseCompletion}%</h2>
-            <input type="range" min="0" max="100" step="0.01" value={courseCompletion} />
+            <input type="range" min="0" max="100" step="0.01" readOnly value={courseCompletion} />
             <ul>
               {lessons.map((lesson, i) => {
                 return (
                   <li key={lesson.id}>
-                    <h2 style={{ backgroundColor: `${lesson.isFinished ? '#009BD8' : 'none'}` }}>{lesson.id}. {lesson.title}</h2>
+                    <h2 style={{ backgroundColor: `${lesson.isFinished ? '#009BD8' : 'none'}` }}>{i + 1}. {lesson.title}</h2>
                     <ul>
                       {lesson.contents.map((content, j) => {
                         return (
-                          <li key={content.id} style={{ color: `${(i === lessonIdx && j === contentIdx) ? '#009BD8' : 'unset'}` }}>
+                          <li key={lesson.id + "" + content.id} style={{ color: `${(i === lessonIdx && j === contentIdx) ? '#009BD8' : 'unset'}` }}>
                             <a onClick={() => handleNavClick(i, j)}>
                               <h3>
                                 {content.type} {content.isFinished ? `✅ ${content.type === 'quiz' ? (content.score + "/" + content.questions.length) : ""}` : ""}

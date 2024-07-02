@@ -3,6 +3,25 @@ import { makeStyles } from "@mui/styles";
 const useStyles = makeStyles((theme) => ({
   VideoPlayer: {
 
+    position: 'relative',
+    width: 'fit-content',
+    textAlign: 'center',
+
+    '& .btn-container': {
+      position: 'absolute',
+      left: '80%',
+      bottom: '25%',
+
+      '& button': {
+        fontSize: '2.5rem',
+        padding: '0.5rem 0.75rem',
+      },
+    },
+
+    '@media (max-width: 768px)': {
+      backgroundColor: 'green',
+    },
+
     '& .container': {
       position: 'relative',
       display: 'flex',
@@ -43,9 +62,13 @@ const useStyles = makeStyles((theme) => ({
           display: 'flex',
           width: '65%',
           alignItems: 'center',
+          '& .video-time, & .video-duration': {
+            width: '10%',
+            textAlign: 'center',
+          },
 
           '& .progress-outer': {
-            width: '100%',
+            width: '80%',
             height: '2px',
             backgroundColor: '#fff',
             margin: '0 15px',
@@ -61,51 +84,29 @@ const useStyles = makeStyles((theme) => ({
 
               '& .progress-knob': {
                 position: 'absolute',
-                display: 'none',
+                display: 'block',
                 width: '0.75rem',
                 height: '0.75rem',
-                right: 0,
-                top: 50,
+                right: '0',
+                top: '50%',
                 transform: 'translate(50%, -50%)',
                 backgroundColor: '#009BD8',
                 border: '2px solid #fff',
                 borderRadius: '50%',
                 pointerEvents: 'none',
               },
-              
-              '&:hover .progress-knob': {
+            },
+
+            '&:hover': {
+              height: '5px',
+              '& .progress-inner .progress-knob': {
                 display: 'block',
-              },
+              }
             },
           },
         },
 
       },
-    },
-    // backgroundColor: 'blue',
-    position: 'relative',
-    width: 'fit-content',
-    textAlign: 'center',
-
-    '& .video': {
-      width: '100%',
-      maxWidth: '1000px',
-      margin: '20px 0',
-    },
-
-    '& .btn-container': {
-      position: 'absolute',
-      left: '80%',
-      bottom: '25%',
-
-      '& button': {
-        fontSize: '2.5rem',
-        padding: '0.5rem 0.75rem',
-      },
-    },
-
-    '@media (max-width: 768px)': {
-      backgroundColor: 'green',
     },
   },
 }));

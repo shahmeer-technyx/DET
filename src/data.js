@@ -1,6 +1,6 @@
 export const COURSES = [
   {
-    id: 1,
+    id: 'c1',
     slug: 'intro-to-entrepreneurship',
     title: 'Introduction to Entrepreneurship',
     subTitle: 'Start your entrepreneurial journey with our beginner-friendly course, covering essential skills and insights for success. ',
@@ -9,12 +9,12 @@ export const COURSES = [
     isFinished: false,
     lessons: [
       {
-        id: 1,
+        id: 'l1',
         title: 'Understanding Entrepreneurship',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: true,
             languages: ['en', 'ar'],
@@ -24,14 +24,14 @@ export const COURSES = [
             }
           },
           {
-            id: 1,
+            id: 'qz1',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of Canada?',
                 answerOptions: [
@@ -42,7 +42,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you working?',
                 answerOptions: [
@@ -55,12 +55,12 @@ export const COURSES = [
         ]
       },
       {
-        id: 2,
+        id: 'l2',
         title: 'The Entrepreneur',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: false,
             languages: ['en', 'ar'],
@@ -70,14 +70,14 @@ export const COURSES = [
             }
           },
           {
-            id: 2,
+            id: 'qz2',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of Germany?',
                 answerOptions: [
@@ -88,7 +88,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you excited?',
                 answerOptions: [
@@ -102,12 +102,12 @@ export const COURSES = [
         ]
       },
       {
-        id: 3,
+        id: 'l3',
         title: 'The Problem with Entrepreneurship',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: false,
             languages: ['en', 'ar'],
@@ -117,14 +117,14 @@ export const COURSES = [
             }
           },
           {
-            id: 3,
+            id: 'qz3',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of France?',
                 answerOptions: [
@@ -135,7 +135,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you running?',
                 answerOptions: [
@@ -153,7 +153,7 @@ export const COURSES = [
       score: 0,
       questions: [
         {
-          id: 1,
+          id: 'que1',
           questionType: 'mcq',
           questionText: 'What is the capital of France?',
           answerOptions: [
@@ -164,7 +164,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 2,
+          id: 'que2',
           questionType: 'bcq',
           questionText: 'Are you running?',
           answerOptions: [
@@ -173,7 +173,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 3,
+          id: 'que3',
           questionType: 'mcq',
           questionText: 'What is the capital of Germany?',
           answerOptions: [
@@ -184,7 +184,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 4,
+          id: 'que4',
           questionType: 'bcq',
           questionText: 'Are you excited?',
           answerOptions: [
@@ -193,7 +193,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 5,
+          id: 'que5',
           questionType: 'mcq',
           questionText: 'What is the capital of Canada?',
           answerOptions: [
@@ -204,7 +204,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 6,
+          id: 'que6',
           questionType: 'bcq',
           questionText: 'Are you working?',
           answerOptions: [
@@ -216,19 +216,19 @@ export const COURSES = [
     }
   },
   {
-    id: 2,
+    id: 'course-2',
     slug: 'intro-to-ai',
     title: 'Introduction to AI',
     subTitle: 'Learn the basics of AI',
     isFinished: false,
     lessons: [
       {
-        id: 1,
+        id: 'l1',
         title: 'Understanding Entrepreneurship',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: false,
             languages: ['en', 'ar'],
@@ -238,14 +238,14 @@ export const COURSES = [
             }
           },
           {
-            id: 4,
+            id: 'qz4',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of Canada?',
                 answerOptions: [
@@ -256,7 +256,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you working?',
                 answerOptions: [
@@ -269,12 +269,12 @@ export const COURSES = [
         ]
       },
       {
-        id: 2,
+        id: 'l2',
         title: 'The Entrepreneur',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: false,
             languages: ['en', 'ar'],
@@ -284,14 +284,14 @@ export const COURSES = [
             }
           },
           {
-            id: 5,
+            id: 'qz5',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of Germany?',
                 answerOptions: [
@@ -302,7 +302,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you excited?',
                 answerOptions: [
@@ -316,12 +316,12 @@ export const COURSES = [
         ]
       },
       {
-        id: 3,
+        id: 'l3',
         title: 'The Problem with Entrepreneurship',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: false,
             languages: ['en', 'ar'],
@@ -331,14 +331,14 @@ export const COURSES = [
             }
           },
           {
-            id: 6,
+            id: 'qz6',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of France?',
                 answerOptions: [
@@ -349,7 +349,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you running?',
                 answerOptions: [
@@ -367,7 +367,7 @@ export const COURSES = [
       score: 0,
       questions: [
         {
-          id: 1,
+          id: 'que1',
           questionType: 'mcq',
           questionText: 'What is the capital of France?',
           answerOptions: [
@@ -378,7 +378,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 2,
+          id: 'que2',
           questionType: 'bcq',
           questionText: 'Are you running?',
           answerOptions: [
@@ -387,7 +387,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 3,
+          id: 'que3',
           questionType: 'mcq',
           questionText: 'What is the capital of Germany?',
           answerOptions: [
@@ -398,7 +398,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 4,
+          id: 'que4',
           questionType: 'bcq',
           questionText: 'Are you excited?',
           answerOptions: [
@@ -407,7 +407,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 5,
+          id: 'que5',
           questionType: 'mcq',
           questionText: 'What is the capital of Canada?',
           answerOptions: [
@@ -418,7 +418,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 6,
+          id: 'que6',
           questionType: 'bcq',
           questionText: 'Are you working?',
           answerOptions: [
@@ -430,19 +430,19 @@ export const COURSES = [
     }
   },
   {
-    id: 3,
+    id: 'course-3',
     slug: 'intro-to-ml',
     title: 'Introduction to ML',
     subTitle: 'Learn the basics of ML',
     isFinished: false,
     lessons: [
       {
-        id: 1,
+        id: 'l1',
         title: 'Understanding Entrepreneurship',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: true,
             languages: ['en', 'ar'],
@@ -452,14 +452,14 @@ export const COURSES = [
             }
           },
           {
-            id: 7,
+            id: 'qz7',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of Canada?',
                 answerOptions: [
@@ -470,7 +470,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you working?',
                 answerOptions: [
@@ -483,12 +483,12 @@ export const COURSES = [
         ]
       },
       {
-        id: 2,
+        id: 'l2',
         title: 'The Entrepreneur',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: false,
             languages: ['en', 'ar'],
@@ -498,14 +498,14 @@ export const COURSES = [
             }
           },
           {
-            id: 8,
+            id: 'qz8',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of Germany?',
                 answerOptions: [
@@ -516,7 +516,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you excited?',
                 answerOptions: [
@@ -530,12 +530,12 @@ export const COURSES = [
         ]
       },
       {
-        id: 3,
+        id: 'l3',
         title: 'The Problem with Entrepreneurship',
         isFinished: false,
         contents: [
           {
-            id: 1,
+            id: 'v1',
             type: 'video',
             isFinished: false,
             languages: ['en', 'ar'],
@@ -545,14 +545,14 @@ export const COURSES = [
             }
           },
           {
-            id: 9,
+            id: 'qz9',
             type: 'quiz',
             isFinished: false,
             score: 0,
             languages: ['en', 'ar'],
             questions: [
               {
-                id: 1,
+                id: 'que1',
                 questionType: 'mcq',
                 questionText: 'What is the capital of France?',
                 answerOptions: [
@@ -563,7 +563,7 @@ export const COURSES = [
                 ]
               },
               {
-                id: 2,
+                id: 'que2',
                 questionType: 'bcq',
                 questionText: 'Are you running?',
                 answerOptions: [
@@ -581,7 +581,7 @@ export const COURSES = [
       score: 0,
       questions: [
         {
-          id: 1,
+          id: 'que1',
           questionType: 'mcq',
           questionText: 'What is the capital of France?',
           answerOptions: [
@@ -592,7 +592,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 2,
+          id: 'que2',
           questionType: 'bcq',
           questionText: 'Are you running?',
           answerOptions: [
@@ -601,7 +601,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 3,
+          id: 'que3',
           questionType: 'mcq',
           questionText: 'What is the capital of Germany?',
           answerOptions: [
@@ -612,7 +612,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 4,
+          id: 'que4',
           questionType: 'bcq',
           questionText: 'Are you excited?',
           answerOptions: [
@@ -621,7 +621,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 5,
+          id: 'que5',
           questionType: 'mcq',
           questionText: 'What is the capital of Canada?',
           answerOptions: [
@@ -632,7 +632,7 @@ export const COURSES = [
           ]
         },
         {
-          id: 6,
+          id: 'que6',
           questionType: 'bcq',
           questionText: 'Are you working?',
           answerOptions: [
