@@ -96,7 +96,6 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
         <div>
           {question.answerOptions.map((answerOption, i) => {
             let key = quiz.id.toString() + questionIdx.toString() + answerOption.id.toString();
-            console.log('key',key);
             let bgColor = revealAnswer
               ? (
                 selectedOptionIds.includes(answerOption.id)

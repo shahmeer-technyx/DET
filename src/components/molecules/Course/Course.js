@@ -4,7 +4,7 @@ import QuizForm from "@/components/atoms/QuizForm/QuizForm";
 import VideoPlayer from "@/components/atoms/VideoPlayer/VideoPlayer";
 import { produce } from "immer";
 import Link from "next/link";
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 
 const Course = (props) => {
 
@@ -18,6 +18,8 @@ const Course = (props) => {
     lessonIdx: 0,
     contentIdx: 0
   });
+
+  const videoRef = useRef(null);
 
   const { displayVideo, displayQuiz, playFrom, lessonIdx, contentIdx } = state;
   const { lessons } = course;
@@ -85,6 +87,9 @@ const Course = (props) => {
   }
 
   const handleQuizResize = useCallback(() => {
+    if (displayVideo) {
+      videoRef.current.pause();
+    }
     setState(prevState => ({
       ...prevState,
       displayVideo: !prevState.displayVideo,
@@ -93,7 +98,6 @@ const Course = (props) => {
   }, []);
 
   const handleNavClick = (lessonIdx, contentIdx) => {
-    console.log('handleNavClick', lessonIdx, contentIdx);
     setState(prevState => ({
       ...prevState,
       displayVideo: lessons[lessonIdx].contents[contentIdx].type === 'video',
@@ -106,10 +110,15 @@ const Course = (props) => {
   }
 
   let videoPlayer = useMemo(() => {
-    return <VideoPlayer displayQuiz={displayQuiz} playFrom={playFrom} srcList={displayQuiz ? state.lastSrcList : content.srcList} handleNext={handleNext} />
+    return <VideoPlayer
+      key={lessonIdx + "" + contentIdx}
+      videoRef={videoRef}
+      displayQuiz={displayQuiz} playFrom={playFrom}
+      srcList={displayQuiz ? state.lastSrcList : content.srcList}
+      handleNext={handleNext}
+    />
   }, [state.lastSrcList, lessonIdx]);
 
-  // console.log(course);
 
   return (
     <div style={{ display: 'flex', justifyContent: 'space-between', margin: '1rem' }}>
@@ -128,7 +137,6 @@ const Course = (props) => {
                 {videoPlayer}
               </div>
               {displayQuiz && (
-                // <h1>Quiz</h1>
                 <QuizForm quiz={content} lessonTitle={lesson.title} playFrom={playFrom} handleNext={handleNext} handleQuizResize={handleQuizResize} />
               )}
             </div>

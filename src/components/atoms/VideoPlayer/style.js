@@ -11,6 +11,7 @@ const useStyles = makeStyles((theme) => ({
       position: 'absolute',
       left: '80%',
       bottom: '25%',
+      backgroundColor: '#fff',
 
       '& button': {
         fontSize: '2.5rem',

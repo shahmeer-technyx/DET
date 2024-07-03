@@ -5,8 +5,9 @@ import useStyles from './style';
 import VideoLangBtn from '../VideoLangBtn/VideoLangBtn';
 import VideoVolumeBtn from '../VideoVolumeBtn/VideoVolumeBtn';
 
-const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNext }) => {
-  const videoRef = useRef(null);
+const VideoPlayer = ({ videoRef, displayQuiz = false, playFrom = 0, srcList = {}, handleNext }) => {
+
+  // const videoRef = useRef(null);
   const [duration, setDuration] = useState(0);
   const [currentTime, setCurrentTime] = useState(playFrom);
   const [videoLang, setVideoLang] = useState('en');
@@ -21,18 +22,23 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
     const video = videoRef.current;
     if (video) {
       const handleLoadedMetadata = () => {
-        console.log('handleLoadedMetadata', video.duration);
         setDuration(video.duration);
       };
 
       video.addEventListener('loadedmetadata', handleLoadedMetadata);
       video.load();
-      console.log('playFrom', currentTime);
-      video.currentTime = currentTime;
 
       return () => {
         video?.removeEventListener('loadedmetadata', handleLoadedMetadata);
       };
+    }
+  }, []);
+  
+  useEffect(() => {
+    const video = videoRef.current;
+    if (video) {
+      video.load();
+      video.currentTime = currentTime;
     }
   }, [videoLang, srcList, displayQuiz]);
 
@@ -57,7 +63,6 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
   };
 
   const formatTime = (duration) => {
-    // console.log(duration);
     let min = Math.floor(duration / 60);
     let sec = Math.floor(duration % 60);
     sec = sec < 10 ? '0' + sec : sec;
@@ -93,7 +98,6 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
   }
 
   const handleTimeUpdate = () => {
-    console.log('handleTimeUpdate');
     let video = videoRef.current;
     let progressBar = document.querySelector(".progress-inner-js");
     if (video) {
@@ -104,7 +108,6 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
 
   const handleEnlarge = () => {
     let video = videoRef.current;
-    console.log('enlarge');
     if (!document.fullscreenElement) {
       video.requestFullscreen();
     } else {
@@ -116,7 +119,6 @@ const VideoPlayer = ({ displayQuiz = false, playFrom = 0, srcList = {}, handleNe
     setVideoLang(lang)
   }, []);
 
-  // console.log('videoRef.current', videoRef.current.volume);
 
   return (
     <div className={classes.VideoPlayer}>

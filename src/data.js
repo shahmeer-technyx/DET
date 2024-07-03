@@ -20,7 +20,7 @@ export const COURSES = [
             languages: ['en', 'ar'],
             srcList: {
               "en": 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-              "ar": 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4'
+              "ar": 'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4'
             }
           },
           {
