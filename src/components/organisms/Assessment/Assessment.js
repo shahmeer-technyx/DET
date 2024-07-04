@@ -87,7 +87,7 @@ const Assessment = (props) => {
         ? (
           <div>
             <h2>Test Your Knowledge</h2>
-            <h3>Ready to put your knowledge to the test? Take our test to see how well you've grasped the material. Get instant feedback and keep learning!</h3>
+            <h3>Ready to put your knowledge to the test? Take our test to see how well you have grasped the material. Get instant feedback and keep learning!</h3>
             <span>{totalQuestions + " Questions"}</span>
             <h3>{lessonTitle}</h3>
             <h4>You must answer {(totalQuestions * 0.8).toFixed(0)}/{totalQuestions} questions correctly to pass.</h4>
