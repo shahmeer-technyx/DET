@@ -2,6 +2,7 @@
 
 import QuizForm from "@/components/atoms/QuizForm/QuizForm";
 import VideoPlayer from "@/components/atoms/VideoPlayer/VideoPlayer";
+import Assessment from "@/components/organisms/Assessment/Assessment";
 import { produce } from "immer";
 import Link from "next/link";
 import { useCallback, useMemo, useRef, useState } from "react";
@@ -11,6 +12,7 @@ const Course = (props) => {
   const [course, setCourse] = useState(props.course);
 
   const [state, setState] = useState({
+    displayTest: false,
     displayVideo: true,
     displayQuiz: false,
     lastSrcList: course.lessons[0].contents[0].srcList,
@@ -21,7 +23,7 @@ const Course = (props) => {
 
   const videoRef = useRef(null);
 
-  const { displayVideo, displayQuiz, playFrom, lessonIdx, contentIdx } = state;
+  const { displayTest, displayVideo, displayQuiz, playFrom, lessonIdx, contentIdx } = state;
   const { lessons } = course;
   const { contents } = lessons[lessonIdx];
   const lesson = lessons[lessonIdx];
@@ -82,7 +84,16 @@ const Course = (props) => {
         playFrom: 0
       }))
     } else {
-      alert('You have completed the course!');
+      setState(prevState => ({
+        ...prevState,
+        displayTest: true,
+        displayVideo: false,
+        displayQuiz: false,
+        lastSrcList: {},
+        lessonIdx: 0,
+        contentIdx: 0,
+        playFrom: 0
+      }))
     }
   }
 
@@ -97,15 +108,51 @@ const Course = (props) => {
     }))
   }, []);
 
-  const handleNavClick = (lessonIdx, contentIdx) => {
+  const handleNavClick = (lessonIdx, contentIdx, test = false) => {
+    if (test) {
+     setState(prevState => ({
+       ...prevState,
+       displayTest: true,
+       displayVideo: false,
+       displayQuiz: false,
+       lastSrcList: course.lessons[lessonIdx].contents[0].srcList,
+       playFrom: 0,
+       lessonIdx: lessonIdx,
+       contentIdx: contentIdx,
+     })) 
+    } else {
+      setState(prevState => ({
+        ...prevState,
+        displayTest: false,
+        displayVideo: lessons[lessonIdx].contents[contentIdx].type === 'video',
+        displayQuiz: lessons[lessonIdx].contents[contentIdx].type === 'quiz',
+        lastSrcList: lessons[lessonIdx].contents[0].srcList,
+        playFrom: 0,
+        lessonIdx: lessonIdx,
+        contentIdx: contentIdx,
+      }))
+    }
+  }
+
+  const handleBeginTest = () => {
+    setCourse(produce(prevState => {
+      prevState.test.isAttempted = true;
+    }))
+  }
+
+  const handleFinishTest = () => {
+    setCourse(produce(prevState => {
+      prevState.test.isFinished = true;
+    }))
     setState(prevState => ({
       ...prevState,
-      displayVideo: lessons[lessonIdx].contents[contentIdx].type === 'video',
-      displayQuiz: lessons[lessonIdx].contents[contentIdx].type === 'quiz',
-      lastSrcList: lessons[lessonIdx].contents[0].srcList,
+      displayTest: false,
+      displayVideo: true,
+      displayQuiz: false,
+      lastSrcList: course.lessons[0].contents[0].srcList,
       playFrom: 0,
-      lessonIdx: lessonIdx,
-      contentIdx: contentIdx,
+      lessonIdx: 0,
+      contentIdx: 0
     }))
   }
 
@@ -137,7 +184,25 @@ const Course = (props) => {
                 {videoPlayer}
               </div>
               {displayQuiz && (
-                <QuizForm quiz={content} lessonTitle={lesson.title} playFrom={playFrom} handleNext={handleNext} handleQuizResize={handleQuizResize} />
+                // <QuizForm quiz={content} lessonTitle={lesson.title} playFrom={playFrom} handleNext={handleNext} handleQuizResize={handleQuizResize} />
+                <Assessment
+                  assessment={content}
+                  lessonTitle={lesson.title}
+                  playFrom={playFrom}
+                  handleNext={handleNext}
+                  handleQuizResize={handleQuizResize}
+                />
+              )}
+              {displayTest && (
+                <Assessment
+                  assessment={course.test}
+                  lessonTitle={course.title}
+                  playFrom={playFrom}
+                  handleNext={handleNext}
+                  handleQuizResize={handleQuizResize}
+                  handleBeginTest={handleBeginTest}
+                  handleFinishTest={handleFinishTest}
+                />
               )}
             </div>
           </div>
@@ -170,6 +235,10 @@ const Course = (props) => {
                   </li>
                 )
               })}
+              <li key={course.test.id}>
+                <h2>Test</h2>
+                <button onClick={() => handleNavClick(lessonIdx, 0, true)}>{course.test.isAttempted ? 'Retake Test' : 'Take Test'}</button>
+              </li>
             </ul>
           </>
         }

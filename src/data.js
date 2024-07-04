@@ -149,6 +149,9 @@ export const COURSES = [
       }
     ],
     test: {
+      id: 't1',
+      type: 'test',
+      isFinished: false,
       isAttempted: false,
       score: 0,
       questions: [
@@ -363,6 +366,9 @@ export const COURSES = [
       }
     ],
     test: {
+      id: 't2',
+      type: 'test',
+      isFinished: false,
       isAttempted: false,
       score: 0,
       questions: [
@@ -577,6 +583,9 @@ export const COURSES = [
       }
     ],
     test: {
+      id: 't3',
+      type: 'test',
+      isFinished: false,
       isAttempted: false,
       score: 0,
       questions: [
