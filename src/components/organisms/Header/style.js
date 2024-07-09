@@ -3,13 +3,14 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   Header: {
+    position: 'fixed',
+    zIndex: '1',
     color: '#0E0E0E',
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     width: '100%',
     backgroundColor: '#FFFFFF',
-    border: '1px solid #E3E3E4',
     padding: '0.625rem 5rem',
 
     '& .navigation': {
