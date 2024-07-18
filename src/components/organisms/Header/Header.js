@@ -6,23 +6,34 @@ import accessibility from '@/assets/accessibility.svg';
 import dropdown from '@/assets/dropdown.svg';
 import Image from 'next/image';
 import useStyles from './style';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
+import { useRef } from 'react';
 
-const Header = () => {
+const Header = ({tl}) => {
 
   const classes = useStyles();
+  const header = useRef();
+
+  useGSAP(() => {
+
+    tl
+      .fromTo('.animate-set-1', { yPercent: -250 }, { yPercent: 0, stagger: {amount: 0.1} })
+      .fromTo('.animate-set-2', { yPercent: -250 }, { yPercent: 0, stagger: {amount: 0.1} }, '<');
+  }, { scope: header })
 
   return (
-    <div className={classes.Header}>
+    <div ref={header} className={classes.Header}>
       <div className={classes.Logo}>
         <Image src={logo} />
       </div>
       <div className='navigation'>
-        <a className='navigation-item'>Learn</a>
-        <a className='navigation-item'>Resources</a>
-        <a className='navigation-item'>Community</a>
+        <a className='navigation-item animate-set-1'>Learn</a>
+        <a className='navigation-item animate-set-1'>Resources</a>
+        <a className='navigation-item animate-set-1'>Community</a>
       </div>
       <div className='cta-plus-settings'>
-        <div className='language'>
+        <div className='language animate-set-2'>
           <div className='current-language'>EN</div>
           <div className='language-dropdown-btn'>
             <Image src={dropdown} />
@@ -32,16 +43,16 @@ const Header = () => {
             <div className='language-dropdown-item'>Arabic</div>
           </div>
         </div>
-        <div className='divider'></div>
-        <div className='search'>
+        <div className='divider animate-set-2'></div>
+        <div className='search animate-set-2'>
           <Image src={search} />
         </div>
-        <div className='accessibility'>
+        <div className='accessibility animate-set-2'>
           <Image src={accessibility} />
         </div>
         <div className='cta'>
-          <div className='cta-btn'>Login</div>
-          <div className='cta-btn style2'>Join</div>
+          <div className='cta-btn animate-set-2'>Login</div>
+          <div className='cta-btn style2 animate-set-2'>Join</div>
         </div>
       </div>
     </div>

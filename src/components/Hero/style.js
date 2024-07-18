@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
         top: '0',
         left: '0',
         objectFit: 'cover',
-        width: '100%',
+        width: '100vw',
         height: '100vh',
       },
     },
