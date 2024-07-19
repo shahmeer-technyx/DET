@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100vh',
     position: 'relative',
-    paddingTop: '100px',
+    paddingTop: '99px',
 
     '& .hero-banner-part-1': {
       position: 'absolute',
@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
       left: '0',
       width: '100%',
       height: 'calc(100% - 15rem)',
-      zIndex: '-1',
+      zIndex: '-2',
       overflow: 'hidden',
       '& img': {
         position: 'absolute',
@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
       // width: '53.698%',
       width: 'calc(100% - 55.563rem)',
       height: '29.625rem',
-      zIndex: '-1',
+      zIndex: '-2',
       overflow: 'hidden',
       borderRadius: '0 0 6.25rem 0',
       '& img': {
@@ -49,21 +49,43 @@ const useStyles = makeStyles((theme) => ({
     '& .heading-subtitle': {
       width: 'fit-content',
       height: 'fit-content',
-      backgroundColor: '#FFF',
+      // backgroundColor: '#FFF',
       padding: '2.5rem 9.875rem 5.625rem 5rem',
       borderRadius: '0 0 6.25rem 0',
+      position: 'relative',
+      overflow: 'hidden',
+      // zIndex: 1,
+
+      '& .heading-subtitle-bg': {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        zIndex: -1,
+        height: '100%',
+        width: '100%',
+        backgroundColor: '#FFF',
+        borderRadius: '0 0 6.25rem 0',
+      },
 
       '& .heading-wrapper': {
         maxWidth: '36.688rem',
 
-        '& .heading': {
-          fontSize: '4.5rem',
-          lineHeight: '5.5rem',
-          fontWeight: '500',
+        '& .main-heading-wrapper': {
           marginBottom: '1.25rem',
 
-          '& .highlight': {
-            color: '#00909A',
+          '& .line-wrapper': {
+            minWidth: 'fit-content',
+            overflow: 'hidden',
+          },
+
+          '& .heading': {
+            fontSize: '4.5rem',
+            lineHeight: '5.5rem',
+            fontWeight: '500',
+
+            '&.highlight': {
+              color: '#00909A',
+            },
           },
         },
         '& .subtitle': {

@@ -10,7 +10,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { useRef } from 'react';
 
-const Header = ({tl}) => {
+const Header = ({tl, duration, ease}) => {
 
   const classes = useStyles();
   const header = useRef();
@@ -18,8 +18,8 @@ const Header = ({tl}) => {
   useGSAP(() => {
 
     tl
-      .fromTo('.animate-set-1', { yPercent: -250 }, { yPercent: 0, stagger: {amount: 0.1} })
-      .fromTo('.animate-set-2', { yPercent: -250 }, { yPercent: 0, stagger: {amount: 0.1} }, '<');
+      .fromTo('.animate-set-1', { yPercent: -250 }, { duration: duration, yPercent: 0, stagger: {amount: 0.1}, ease: ease })
+      .fromTo('.animate-set-2', { yPercent: -250 }, { duration: duration, yPercent: 0, stagger: {amount: 0.1}, ease: ease }, '<');
   }, { scope: header })
 
   return (
