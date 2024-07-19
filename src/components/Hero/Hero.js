@@ -18,7 +18,9 @@ const Hero = ({tl, duration, ease}) => {
       .fromTo('.heading-subtitle-bg', { height: 0 }, { duration: duration, height: '100%', ease: ease }, "0")
       .fromTo('.text-animate-1', { yPercent: 200 }, { duration: duration, yPercent: 0, ease: ease }, "0")
       .fromTo('.text-animate-2', { opacity: 0, xPercent: -15 }, { duration: duration, opacity: 1, xPercent: 0, ease: ease }, "<")
-      .fromTo('.img-animate img', { scale: 1.2 }, { duration: duration, scale: 1, ease: ease }, "<");
+      .fromTo('.img-animate img', { scale: 1.2 }, { duration: duration, scale: 1, ease: ease }, "<")
+      // .fromTo('.ai-assistant-bg', { height: 0 }, { duration: duration, height: '100%', ease: ease }, "0")
+      // .fromTo('.hero-banner-part-1', { height: '100%' }, { duration: duration, height: 'calc(100% - 15rem)' }, "-=0.5");
   }, { scope: heroRef })
 
   useEffect(() => {
@@ -48,6 +50,7 @@ const Hero = ({tl, duration, ease}) => {
         <Image src={heroOverlay} alt="logo" />
       </div>
       <div className="ai-assistant">
+        {/* <div className="ai-assistant-bg"> */}
         <div className="ai-assistant-wrapper">
           <div className="text text-1">
             <span>I am a </span>

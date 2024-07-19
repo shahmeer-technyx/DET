@@ -108,6 +108,17 @@ const useStyles = makeStyles((theme) => ({
       backgroundColor: '#FFF',
       padding: '2.938rem 5rem 10.375rem 6.063rem',
 
+      '& .ai-assistant-bg': {
+        position: 'absolute',
+        bottom: 0,
+        left: 0,
+        zIndex: -1,
+        height: '100%',
+        width: '100%',
+        backgroundColor: '#FFF',
+        borderRadius: '6.25rem 0 0 0',
+      },
+
       '& .ai-assistant-wrapper': {
         maxWidth: '44.5rem',
         fontSize: '2rem',
