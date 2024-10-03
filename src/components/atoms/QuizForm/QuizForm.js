@@ -11,7 +11,7 @@ const QuizForm = ({ lessonTitle, quiz, playFrom, handleNext, handleQuizResize })
     revealAnswer: false,
     selectedOptionIds: [],
   })
-
+console.log('quiz')
   useEffect(() => {
     setState({
       questionIdx: 0,
